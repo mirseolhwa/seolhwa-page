@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)file:///C:/Users/user/Downloads/profile_updated_2.html -->
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>꽃잎 프로필</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="./꽃잎 프로필_files/css2" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  :root {
+    --pink-light: #fce4ec;
+    --pink-mid: #f48fb1;
+    --pink-deep: #e91e8c;
+    --lavender: #f3e5f5;
+    --lavender-mid: #ce93d8;
+    --cream: #fff9f9;
+    --text-dark: #4a2040;
+    --text-mid: #9c4070;
+    --accent: #ff6b9d;
+    --bg: #fff5f8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    font-family: 'Nanum Myeongjo', serif;
+    color: var(--text-dark);
+    overflow-x: hidden;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ctext y='16' font-size='16'%3E🌸%3C/text%3E%3C/svg%3E"), auto;
+  }
+
+  /* 배경 파티클 */
+  .petals-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .petal {
+    position: absolute;
+    top: -20px;
+    font-size: 14px;
+    animation: fall linear infinite;
+    opacity: 0.6;
+  }
+  @keyframes fall {
+    0% { transform: translateY(-20px) rotate(0deg) translateX(0); opacity: 0.8; }
+    100% { transform: translateY(110vh) rotate(360deg) translateX(60px); opacity: 0; }
+  }
+
+  /* 스크롤 장식 */
+  .deco-line {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 10;
+    opacity: 0.5;
+  }
+  .deco-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--pink-mid);
+  }
+
+  /* 메인 컨테이너 */
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 80px 40px 140px;
+  }
+
+  /* 헤더 영역 */
+  .header {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+  }
+
+  .header-deco {
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: var(--text-mid);
+    margin-bottom: 24px;
+    opacity: 0.7;
+    font-family: 'Yomogi', cursive;
+  }
+
+  .profile-frame {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 28px;
+  }
+
+  .profile-frame::before, .profile-frame::after {
+    content: '';
+    position: absolute;
+    border: 1.5px solid var(--pink-mid);
+    border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+    opacity: 0.4;
+  }
+  .profile-frame::before {
+    top: -12px; left: -12px; right: -12px; bottom: -12px;
+    animation: morph 6s ease-in-out infinite;
+  }
+  .profile-frame::after {
+    top: -22px; left: -22px; right: -22px; bottom: -22px;
+    border-color: var(--lavender-mid);
+    animation: morph 8s ease-in-out infinite reverse;
+    opacity: 0.25;
+  }
+
+  @keyframes morph {
+    0%, 100% { border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%; }
+    33% { border-radius: 40% 60% 45% 55% / 55% 45% 60% 40%; }
+    66% { border-radius: 55% 45% 60% 40% / 40% 60% 45% 55%; }
+  }
+
+  .profile-img {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    border: 3px solid white;
+    box-shadow: 0 4px 24px rgba(233, 30, 140, 0.15);
+    display: block;
+    background: var(--pink-light);
+    filter: contrast(1.05) brightness(1.02);
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  .status-badge {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    background: white;
+    border: 1.5px solid var(--pink-mid);
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 11px;
+    color: var(--text-mid);
+    white-space: nowrap;
+    font-family: 'Yomogi', cursive;
+  }
+  .status-badge::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #7ec8a0;
+    margin-right: 4px;
+    vertical-align: middle;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  .name-block {
+    margin-bottom: 8px;
+  }
+  .name-main {
+    font-family: 'Cute Font', cursive;
+    font-size: 56px;
+    color: var(--text-dark);
+    letter-spacing: 0.05em;
+    line-height: 1;
+    display: block;
+  }
+  .name-sub {
+    font-size: 16px;
+    color: var(--text-mid);
+    letter-spacing: 0.2em;
+    opacity: 0.8;
+    margin-top: 4px;
+    display: block;
+  }
+
+  .header-quote {
+    font-size: 16px;
+    color: var(--text-mid);
+    line-height: 1.8;
+    opacity: 0.85;
+    position: relative;
+    display: inline-block;
+    padding: 0 16px;
+  }
+  .header-quote::before, .header-quote::after {
+    content: '❀';
+    position: absolute;
+    top: 0;
+    font-size: 10px;
+    opacity: 0.5;
+  }
+  .header-quote::before { left: 0; }
+  .header-quote::after { right: 0; }
+
+  /* 태그 */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .tag {
+    background: white;
+    border: 1px solid var(--pink-mid);
+    border-radius: 999px;
+    padding: 6px 18px;
+    font-size: 14px;
+    color: var(--text-mid);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    opacity: 0.9;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .tag:hover {
+    background: var(--pink-light);
+    transform: translateY(-1px);
+  }
+
+  /* 섹션 공통 */
+  .section {
+    margin-bottom: 48px;
+    animation: fadeUp 0.6s ease forwards;
+    opacity: 0;
+    transform: translateY(16px;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-title {
+    font-family: 'Cute Font', cursive;
+    font-size: 26px;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--pink-mid), transparent);
+    opacity: 0.4;
+  }
+  .section-title span {
+    font-size: 14px;
+    opacity: 0.5;
+  }
+
+  /* 자기소개 카드 */
+  .intro-card {
+    background: white;
+    border: 1px solid rgba(244, 143, 177, 0.3);
+    border-radius: 20px;
+    padding: 28px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .intro-card::before {
+    content: '✦';
+    position: absolute;
+    top: 16px; right: 20px;
+    font-size: 18px;
+    color: var(--pink-mid);
+    opacity: 0.3;
+  }
+  .intro-card p {
+    font-size: 17px;
+    line-height: 2;
+    color: var(--text-dark);
+    opacity: 0.85;
+  }
+  .intro-card p + p {
+    margin-top: 12px;
+  }
+
+  /* 좋아하는 것들 */
+  .likes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+  }
+  .like-item {
+    background: white;
+    border: 1px solid rgba(244, 143, 177, 0.25);
+    border-radius: 16px;
+    padding: 16px 14px;
+    text-align: center;
+    transition: all 0.25s;
+  }
+  .like-item:hover {
+    border-color: var(--pink-mid);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(233, 30, 140, 0.08);
+  }
+  .like-emoji {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .like-text {
+    font-size: 14px;
+    color: var(--text-mid);
+    font-family: 'Yomogi', cursive;
+    line-height: 1.4;
+  }
+
+  /* 마음 상태 바 */
+  .mood-section {
+    background: white;
+    border: 1px solid rgba(244, 143, 177, 0.3);
+    border-radius: 20px;
+    padding: 24px 28px;
+  }
+  .mood-item {
+    margin-bottom: 16px;
+  }
+  .mood-item:last-child { margin-bottom: 0; }
+  .mood-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .mood-name {
+    font-size: 15px;
+    color: var(--text-mid);
+    font-family: 'Yomogi', cursive;
+  }
+  .mood-val {
+    font-size: 11px;
+    color: var(--text-mid);
+    opacity: 0.6;
+  }
+  .mood-bar-bg {
+    height: 8px;
+    background: var(--pink-light);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .mood-bar-fill {
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(to right, var(--pink-mid), var(--lavender-mid));
+    animation: growBar 1.2s ease forwards;
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+  @keyframes growBar { to { transform: scaleX(1); } }
+
+  /* SNS / 연락 */
+  .links-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .link-btn {
+    background: white;
+    border: 1px solid rgba(244, 143, 177, 0.35);
+    border-radius: 24px;
+    padding: 12px 24px;
+    font-size: 15px;
+    color: var(--text-mid);
+    text-decoration: none;
+    font-family: 'Yomogi', cursive;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .link-btn:hover {
+    background: var(--pink-light);
+    border-color: var(--pink-mid);
+    transform: translateY(-2px);
+  }
+  .link-icon { font-size: 16px; }
+
+  /* 방명록 느낌 메모 */
+  .memo-box {
+    background: #fffaf8;
+    border: 1.5px dashed rgba(244, 143, 177, 0.5);
+    border-radius: 20px;
+    padding: 24px 28px;
+    position: relative;
+  }
+  .memo-box::before {
+    content: '💌';
+    position: absolute;
+    top: -14px;
+    left: 28px;
+    font-size: 20px;
+  }
+  .memo-box p {
+    font-size: 15px;
+    line-height: 2;
+    color: var(--text-dark);
+    opacity: 0.75;
+  }
+
+  /* 하단 */
+  .footer {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1px solid rgba(244, 143, 177, 0.2);
+  }
+  .footer p {
+    font-size: 14px;
+    color: var(--text-mid);
+    opacity: 0.5;
+    font-family: 'Yomogi', cursive;
+    line-height: 2;
+  }
+
+  /* 애니메이션 딜레이 */
+  .section:nth-child(1) { animation-delay: 0.1s; }
+  .section:nth-child(2) { animation-delay: 0.2s; }
+  .section:nth-child(3) { animation-delay: 0.3s; }
+  .section:nth-child(4) { animation-delay: 0.4s; }
+  .section:nth-child(5) { animation-delay: 0.5s; }
+
+  .sparkle {
+    display: inline-block;
+    animation: sparkle 2s ease-in-out infinite;
+  }
+  @keyframes sparkle {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.85); }
+  }
+</style>
+</head>
+<body>
+
+<!-- 꽃잎 배경 -->
+<div class="petals-bg" id="petals"><div class="petal" style="left: 92.2349%; font-size: 19.5014px; animation-duration: 12.4105s; animation-delay: 8.18915s; opacity: 0.660893;">✿</div><div class="petal" style="left: 11.6062%; font-size: 14.1194px; animation-duration: 13.6331s; animation-delay: 10.2584s; opacity: 0.454658;">✿</div><div class="petal" style="left: 42.021%; font-size: 18.3734px; animation-duration: 10.3028s; animation-delay: 6.08385s; opacity: 0.323516;">✦</div><div class="petal" style="left: 87.9588%; font-size: 12.6418px; animation-duration: 12.6616s; animation-delay: 4.63055s; opacity: 0.364985;">🌺</div><div class="petal" style="left: 57.9175%; font-size: 17.7789px; animation-duration: 12.252s; animation-delay: 1.79754s; opacity: 0.471578;">🌺</div><div class="petal" style="left: 28.5332%; font-size: 18.3291px; animation-duration: 8.17323s; animation-delay: 11.5946s; opacity: 0.472413;">✿</div><div class="petal" style="left: 3.70163%; font-size: 17.2876px; animation-duration: 19.711s; animation-delay: 10.5941s; opacity: 0.644021;">🌸</div><div class="petal" style="left: 74.7624%; font-size: 15.4454px; animation-duration: 8.22375s; animation-delay: 11.5236s; opacity: 0.473105;">✦</div><div class="petal" style="left: 70.1664%; font-size: 11.9097px; animation-duration: 10.0353s; animation-delay: 3.97238s; opacity: 0.349877;">🌸</div><div class="petal" style="left: 43.0178%; font-size: 15.4925px; animation-duration: 20.3396s; animation-delay: 7.53875s; opacity: 0.548822;">✦</div><div class="petal" style="left: 31.094%; font-size: 14.9766px; animation-duration: 9.57118s; animation-delay: 1.7975s; opacity: 0.632887;">🌺</div><div class="petal" style="left: 58.8375%; font-size: 18.5484px; animation-duration: 14.7367s; animation-delay: 1.34346s; opacity: 0.347873;">✿</div><div class="petal" style="left: 64.0437%; font-size: 11.7957px; animation-duration: 18.1229s; animation-delay: 9.49352s; opacity: 0.36775;">❀</div><div class="petal" style="left: 9.4608%; font-size: 19.3469px; animation-duration: 9.16229s; animation-delay: 3.22615s; opacity: 0.546673;">🌸</div><div class="petal" style="left: 76.6858%; font-size: 12.7391px; animation-duration: 13.7438s; animation-delay: 4.71044s; opacity: 0.561365;">🌸</div><div class="petal" style="left: 83.7455%; font-size: 12.1259px; animation-duration: 15.7703s; animation-delay: 3.00857s; opacity: 0.583376;">✦</div><div class="petal" style="left: 34.9087%; font-size: 15.8069px; animation-duration: 14.7659s; animation-delay: 1.07556s; opacity: 0.326394;">🌸</div><div class="petal" style="left: 58.3832%; font-size: 17.7632px; animation-duration: 16.1746s; animation-delay: 7.65132s; opacity: 0.310042;">🌺</div><div class="petal" style="left: 90.8356%; font-size: 18.9521px; animation-duration: 9.12381s; animation-delay: 8.5469s; opacity: 0.490985;">🌸</div><div class="petal" style="left: 58.681%; font-size: 10.8717px; animation-duration: 17.696s; animation-delay: 11.4564s; opacity: 0.573107;">✦</div><div class="petal" style="left: 97.8735%; font-size: 14.9901px; animation-duration: 10.9605s; animation-delay: 6.3544s; opacity: 0.30664;">❀</div><div class="petal" style="left: 92.7194%; font-size: 11.337px; animation-duration: 17.3599s; animation-delay: 5.7032s; opacity: 0.438278;">⋆</div></div>
+
+<!-- 사이드 장식 -->
+<div class="deco-line">
+  <div class="deco-dot"></div>
+  <div class="deco-dot" style="opacity:0.5"></div>
+  <div class="deco-dot" style="opacity:0.3"></div>
+  <div class="deco-dot" style="opacity:0.15"></div>
+</div>
+
+<div class="page">
+
+  <!-- 헤더 -->
+  <header class="header">
+    <div class="header-deco">✦ welcome to my little world ✦</div>
+
+    <div class="profile-frame">
+      <img class="profile-img" src="./꽃잎 프로필_files/864e155d-bad9-400b-8809-726c7d4879a9.png" alt="프로필 이미지" onerror="this.style.background=&#39;linear-gradient(135deg,#fce4ec,#f3e5f5)&#39;">
+      <div class="status-badge">온라인중</div>
+    </div>
+
+    <div class="name-block">
+      <span class="name-main">이설화 ✿</span>
+      <span class="name-sub">@ mirseolhwa</span>
+    </div>
+
+    <p class="header-quote">
+      세상이 싫어도 오늘도 살아있어요<br>
+      그냥 그런 하루를 보내고 있어요 🌙
+    </p>
+
+    <div class="tags">
+      <span class="tag">♂ 남자</span>
+      <span class="tag">🎂 05년생</span>
+      <span class="tag">🗓️ 12월 12일생</span>
+      <span class="tag">✨ ENFP</span>
+      <span class="tag">🎮 게임러</span>
+      <span class="tag">🎧 음악중독</span>
+      <span class="tag">💬 대화좋아청년</span>
+      <span class="tag">🌙 야행성</span>
+      <span class="tag">🐾 리트리버냥이</span>
+    </div>
+
+    <p class="header-quote" style="margin-top: 18px; font-size: 14px; opacity: 0.75;">
+      선연락 잘 안해요. 받으면 영광으로 여기세욧 🌸<br>
+      제가 뭔 짓을 해도 이해해주는 사람이 좋아요 🤍
+    </p>
+  </header>
+
+  <!-- 자기소개 -->
+  <section class="section">
+    <h2 class="section-title"><span>✦</span> 나에 대해서</h2>
+    <div class="intro-card">
+      <p>안녕하세요, 프로필 봐주셔서 감사해요 ˘ᵕ˘</p>
+      <p>낮보다 밤이 편하고, 혼자가 더 익숙한 사람이에요. 감정이 많아서 가끔 힘들기도 하지만, 좋아하는 것들이 있어서 버티고 있어요.</p>
+      <p>선연락은 잘 못 해요 — 먼저 말 걸어주시면 진심으로 고마워요 💭<br>
+      받은 연락 하나하나 다 소중하게 생각해요 🌸</p>
+    </div>
+  </section>
+
+  <!-- 좋아하는 것들 -->
+  <section class="section">
+    <h2 class="section-title"><span>✦</span> 좋아하는 것들</h2>
+    <div class="likes-grid">
+      <div class="like-item">
+        <span class="like-emoji">🎮</span>
+        <span class="like-text">게임<br>오래해요</span>
+      </div>
+      <div class="like-item">
+        <span class="like-emoji">🎧</span>
+        <span class="like-text">음악<br>항상 켜둬요</span>
+      </div>
+      <div class="like-item">
+        <span class="like-emoji">🐈</span>
+        <span class="like-text">고양이<br>제 전부예요</span>
+      </div>
+      <div class="like-item">
+        <span class="like-emoji">🌙</span>
+        <span class="like-text">새벽<br>제일 좋아요</span>
+      </div>
+      <div class="like-item">
+        <span class="like-emoji">🍡</span>
+        <span class="like-text">달콤한 것<br>먹으면 나아요</span>
+      </div>
+      <div class="like-item">
+        <span class="like-emoji">📱</span>
+        <span class="like-text">애니·만화<br>덕질해요</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 오늘의 마음 상태 -->
+  <section class="section">
+    <h2 class="section-title"><span>✦</span> 오늘의 상태</h2>
+    <div class="mood-section">
+      <div class="mood-item">
+        <div class="mood-label">
+          <span class="mood-name">🌸 귀여운 정도</span>
+          <span class="mood-val">85%</span>
+        </div>
+        <div class="mood-bar-bg"><div class="mood-bar-fill" style="width:85%"></div></div>
+      </div>
+      <div class="mood-item">
+        <div class="mood-label">
+          <span class="mood-name">💭 말하고 싶은 정도</span>
+          <span class="mood-val">40%</span>
+        </div>
+        <div class="mood-bar-bg"><div class="mood-bar-fill" style="width:40%"></div></div>
+      </div>
+      <div class="mood-item">
+        <div class="mood-label">
+          <span class="mood-name">🌙 피곤한 정도</span>
+          <span class="mood-val">70%</span>
+        </div>
+        <div class="mood-bar-bg"><div class="mood-bar-fill" style="width:70%"></div></div>
+      </div>
+      <div class="mood-item">
+        <div class="mood-label">
+          <span class="mood-name">🎮 게임하고 싶은 정도</span>
+          <span class="mood-val">95%</span>
+        </div>
+        <div class="mood-bar-bg"><div class="mood-bar-fill" style="width:95%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 한마디 메모 -->
+  <section class="section">
+    <h2 class="section-title"><span>✦</span> 한마디</h2>
+    <div class="memo-box">
+      <p>
+        친구 많지 않고 인싸도 아니에요.<br>
+        그래도 말 걸어주면 진심으로 좋아해요 ˚₊✧<br>
+        저한테 친절하게 대해주시면 오래 기억해요 🌸<br>
+        <br>
+        성격은 리트리버 같은 고양이예요 🐾<br>
+        겉으론 도도해 보여도 알고 보면 꼬리 치는 타입 ˘ᵕ˘<br>
+        <br>
+        내가 뭔 짓을 하더라도 이해해줄 수 있는 사람이 좋아요 🤍<br>
+        <br>
+        싫어하는 것 : 갑작스러운 연락 끊김, 가스라이팅, 무례한 사람<br>
+        좋아하는 것 : 진심인 사람, 같이 게임해줄 사람 ♡
+      </p>
+    </div>
+  </section>
+
+  <!-- 연락처 -->
+  <section class="section">
+    <h2 class="section-title"><span>✦</span> 연락하기</h2>
+    <div class="links-row">
+      <a class="link-btn" href="file:///C:/Users/user/Downloads/profile_updated_2.html#">
+        <span class="link-icon">💬</span> 디스코드 DM
+      </a>
+      <a class="link-btn" href="file:///C:/Users/user/Downloads/profile_updated_2.html#">
+        <span class="link-icon">🐦</span> 트위터
+      </a>
+      <a class="link-btn" href="file:///C:/Users/user/Downloads/profile_updated_2.html#">
+        <span class="link-icon">🎮</span> 스팀
+      </a>
+      <a class="link-btn" href="file:///C:/Users/user/Downloads/profile_updated_2.html#">
+        <span class="link-icon">🌸</span> 서버 참여
+      </a>
+    </div>
+  </section>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <p>
+      <span class="sparkle">✿</span> made with a lot of feelings <span class="sparkle">✿</span><br>
+      보러 와줘서 고마워요 ˘ᵕ˘ 오늘도 수고했어요 🌙
+    </p>
+  </footer>
+
+</div>
+
+<script>
+  // 꽃잎 파티클
+  const petals = document.getElementById('petals');
+  const symbols = ['🌸', '✿', '❀', '🌺', '✦', '⋆'];
+  for (let i = 0; i < 22; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    p.style.left = Math.random() * 100 + '%';
+    p.style.fontSize = (10 + Math.random() * 10) + 'px';
+    p.style.animationDuration = (8 + Math.random() * 14) + 's';
+    p.style.animationDelay = (Math.random() * 12) + 's';
+    p.style.opacity = 0.3 + Math.random() * 0.4;
+    petals.appendChild(p);
+  }
+</script>
+
+
+</body></html>
